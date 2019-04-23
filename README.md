@@ -1,3 +1,8 @@
+Tested on following mobile browsers:
+
+Default Samsung Browser
+Google Chrome for Android
+
 # mediaLab5
 
 This lab aims to build video streaming app based on WebRTC framework.
