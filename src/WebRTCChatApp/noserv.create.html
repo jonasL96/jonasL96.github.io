@@ -3,8 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title> CREATE WebRTC channel </title>
-  <link href="noserv.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+        video {
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
 <h2> CREATE WebRTC channel <span id="status"> init </span></h2>
@@ -19,12 +26,23 @@
   </div>
   <div id="ct"><input id="msg" disabled><button id="send" disabled>send</button></div>
 </div>
+<div id="container">
+  <video playsinline autoplay></video>
+  <canvas></canvas>
+</div>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
 <script>
-//var server       = { urls: "stun:stun.l.google.com:19302" };
 var sdpConstraints = { optional: [{RtpDataChannels: true}]  };
 var pc = new RTCPeerConnection(null);
 var dc;
-
+//Creating canvas
+const canvas = window.canvas = document.querySelector('canvas');
+canvas.style.display="none";
+canvas.width = 100;
+canvas.height = 100;
+var pngUrl;
+  
 pc.oniceconnectionstatechange = function(e) {
   var state = pc.iceConnectionState;
   $('#status').html(state);
@@ -63,7 +81,9 @@ var addMSG = function(msg, who) {
 createOfferSDP();
 
 var sendMSG = function() {
-  var value = $("#msg").val();
+  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+	pngUrl = canvas.toDataURL();
+  var value = pngUrl;
   if (value) {
     dc.send(value);
     addMSG(value, "me");
