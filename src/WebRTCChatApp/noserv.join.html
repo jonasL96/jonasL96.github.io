@@ -5,6 +5,14 @@
   <title> JOIN WebRTC channel </title>
   <link href="noserv.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style>
+      #canvas {
+        background: #ffffff;
+        border: thin inset #aaaaaa;
+        width: 600px;
+        height: 300px;
+      }
+  </style>
 </head>
 <body>
 <h2>  JOIN WebRTC channel  <span id="status"> init </span> </h2>
@@ -19,6 +27,7 @@
   </div>
   <div id="ct"><input id="msg" disabled><button id="send" disabled>send</button></div>
 </div>
+<canvas id="c"></canvas>
 <script>
 //var server       = { urls: "stun:stun.l.google.com:19302" };
 var sdpConstraints = { optional: [{RtpDataChannels: true}]  };
