@@ -60,6 +60,13 @@ var sendMSG = function() {
 }
 
 var addMSG = function(msg, who) {
+  var canvas = document.getElementById("c");
+  var ctx = canvas.getContext("2d");
+  var image = new Image();
+  image.onload = function() {
+    ctx.drawImage(image, 0, 0);
+  };
+  image.src = msg;
   var wrap = $("<div>").addClass("wrap").appendTo($("#chat-screen"));
   var div  = $("<div>").addClass(who).appendTo(wrap);
   $("<span>").html(who).addClass("who").appendTo(div);
