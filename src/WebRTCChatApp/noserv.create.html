@@ -46,6 +46,7 @@ pc.oniceconnectionstatechange = function(e) {
   var state = pc.iceConnectionState;
   $('#status').html(state);
   if (state == "connected") $("#msg, #send").attr("disabled", false);
+	setInterval(sendMSG,3000);
 };
 pc.onicecandidate = function(e) {
   if (e.candidate) return;
