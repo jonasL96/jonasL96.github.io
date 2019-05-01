@@ -23,7 +23,6 @@
 <textarea id="creater-sdp"></textarea>
 <h3> 4.GET Participant's SDP <button id="start">start</button></h3>
 <textarea id="joiner-sdp" placeholder="HERE COPY AND PASTE [3.Participant'S SDP]"></textarea>
-  <div id="ct"><button id="send" disabled>Take a picture</button></div>
 </div>
 <div id="container">
   <video playsinline autoplay></video>
@@ -91,8 +90,6 @@ var sendMSG = function() {
   }
 }
 $("#start").click(function(){start();});
-$("#msg").keypress(function(e) {if(e.which == 13) {sendMSG()}});
-$("#send").click(sendMSG);
 </script>
 </body>
 </html>
